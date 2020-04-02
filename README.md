@@ -73,6 +73,7 @@ Tambien calculamos el peor escenario con mayor probabilidad, digo esto porque ta
 
 Para calcular el peor escenario posible hice un calculo iterativo de predecir el dia siguiente tomando el limite superior como futuro *Factor de contagio*, re-entrenar con ese dato adicional y repetir hasta alcanzar los 10 días que dijimos antes. Este seria el resultado de todo.
 ![figura_5](./.github/Figure_5.png)
+![figura_6](./.github/Figure_6.png)
 
 ## 2. Conclusiones
 
