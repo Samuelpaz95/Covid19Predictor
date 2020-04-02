@@ -43,18 +43,19 @@ Para predecir que *Factor de contagio* tendremos en los siguientes días usaremo
 ![figura_3](./.github/Figure_2.png)
 
 Obtenemos las siguientes ecuaciones:
-- <img src="https://latex.codecogs.com/svg.latex?\Large&space;y_{1}=W_{1}*X + b_{1}"/>
-- <img src="https://latex.codecogs.com/svg.latex?\Large&space;y_{2}=W_{2}*X + b_{2}"/>
-- <img src="https://latex.codecogs.com/svg.latex?\Large&space;y_{3}=W_{3}*X + b_{3}"/>
-- <img src="https://latex.codecogs.com/svg.latex?\Large&space;y_{4}=W_{4}*X + b_{4}"/>
+
+- <img src="https://latex.codecogs.com/gif.latex?y_{1}=W_{1}*X&space;&plus;&space;b_{1}" title="eq1" />
+- <img src="https://latex.codecogs.com/gif.latex?y_{2}=W_{2}*X&space;&plus;&space;b_{2}" title="eq2" />
+- <img src="https://latex.codecogs.com/gif.latex?y_{3}=W_{3}*X&space;&plus;&space;b_{3}" title="eq3" />
+- <img src="https://latex.codecogs.com/gif.latex?y_{4}=W_{4}*X&space;&plus;&space;b_{4}" title="eq4" />
 ...
-- <img src="https://latex.codecogs.com/svg.latex?\Large&space;y_{n}=W_{n}*X + b_{n}"/>
+- <img src="https://latex.codecogs.com/gif.latex?y_{n}=W_{n}*X&plus;b_{n}" title="y_{n}=W_{n}*X+b_{n}" />
 
 Usamos los parametros *W* y *b* para obtener tres modelos con estas ecuaciones.
 
-- Mediana: <img src="https://latex.codecogs.com/svg.latex?\Large&space;y_{median}=\widetilde{W}*X + \widetilde{b}"/>
-- Media: <img src="https://latex.codecogs.com/svg.latex?\Large&space;Y_{mean} =\overline{W}*X + \overline{b}"/>
-- Entre las dos anteriores: <img src="https://latex.codecogs.com/svg.latex?\Large&space;Y=W*X + b"/>
+- Mediana: <img src="https://latex.codecogs.com/gif.latex?y_{median}=\widetilde{W}X&plus;\widetilde{b}" title="y_{median}=\widetilde{W}X+\widetilde{b}" />
+- Media: <img src="https://latex.codecogs.com/gif.latex?y_{media}=\overline{W}X&plus;\overline{b}" title="y_{media}=\overline{W}X+\overline{b}" />
+- Entre las dos anteriores: <img src="https://latex.codecogs.com/gif.latex?y&space;=&space;WX&plus;b" title="y = WX+b" />
 
 ![figura_4](./.github/Figure_3.png)
 
