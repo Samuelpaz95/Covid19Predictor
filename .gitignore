@@ -1,0 +1,4 @@
+.vscode
+__pycache__
+api_covid.py
+graficas.py
