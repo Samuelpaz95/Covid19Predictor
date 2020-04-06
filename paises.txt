@@ -1,0 +1,230 @@
+china
+hong kong
+macau
+taiwan
+us
+japan
+thailand
+south korea
+singapore
+vietnam
+france
+nepal
+malaysia
+canada
+cambodia
+sri lanka
+ivory coast
+australia
+germany
+finland
+united arab emirates
+philippines
+india
+italy
+uk
+russia
+sweden
+spain
+belgium
+others
+egypt
+iran
+israel
+lebanon
+iraq
+oman
+afghanistan
+bahrain
+kuwait
+austria
+algeria
+croatia
+switzerland
+pakistan
+brazil
+georgia
+greece
+north macedonia
+norway
+romania
+denmark
+estonia
+netherlands
+san marino
+ azerbaijan
+belarus
+iceland
+lithuania
+mexico
+new zealand
+nigeria
+north ireland
+ireland
+luxembourg
+monaco
+qatar
+ecuador
+azerbaijan
+czech republic
+armenia
+dominican republic
+indonesia
+portugal
+andorra
+latvia
+morocco
+saudi arabia
+senegal
+argentina
+chile
+jordan
+ukraine
+saint barthelemy
+hungary
+faroe islands
+gibraltar
+liechtenstein
+poland
+tunisia
+palestine
+bosnia and herzegovina
+slovenia
+south africa
+bhutan
+cameroon
+colombia
+costa rica
+peru
+serbia
+slovakia
+togo
+vatican city
+french guiana
+malta
+martinique
+republic of ireland
+bulgaria
+maldives
+bangladesh
+moldova
+paraguay
+albania
+cyprus
+st. martin
+brunei
+iran (islamic republic of)
+republic of korea
+hong kong sar
+taipei and environs
+viet nam
+occupied palestinian territory
+macao sar
+russian federation
+republic of moldova
+saint martin
+burkina faso
+channel islands
+holy see
+mongolia
+panama
+korea, south
+cruise ship
+united kingdom
+czechia
+taiwan*
+bolivia
+honduras
+congo (kinshasa)
+cote d'ivoire
+jamaica
+reunion
+turkey
+cuba
+guyana
+kazakhstan
+cayman islands
+guadeloupe
+ethiopia
+sudan
+guinea
+antigua and barbuda
+aruba
+kenya
+uruguay
+ghana
+jersey
+namibia
+seychelles
+trinidad and tobago
+venezuela
+curacao
+eswatini
+gabon
+guatemala
+guernsey
+mauritania
+rwanda
+saint lucia
+saint vincent and the grenadines
+suriname
+kosovo
+central african republic
+congo (brazzaville)
+equatorial guinea
+uzbekistan
+guam
+puerto rico
+benin
+greenland
+liberia
+mayotte
+republic of the congo
+somalia
+tanzania
+the bahamas
+barbados
+montenegro
+the gambia
+kyrgyzstan
+mauritius
+zambia
+djibouti
+gambia, the
+bahamas, the
+chad
+el salvador
+fiji
+nicaragua
+madagascar
+haiti
+angola
+cabo verde
+niger
+papua new guinea
+zimbabwe
+cape verde
+east timor
+eritrea
+uganda
+bahamas
+dominica
+gambia
+grenada
+mozambique
+syria
+timor-leste
+belize
+laos
+libya
+diamond princess
+guinea-bissau
+mali
+saint kitts and nevis
+west bank and gaza
+burma
+ms zaandam
+botswana
+burundi
+sierra leone
+malawi

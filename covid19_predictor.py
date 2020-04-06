@@ -1,93 +1,83 @@
-import json
-import numpy as np
-import matplotlib.pyplot as plt
-from datetime import timedelta
-from sklearn.linear_model import LinearRegression
+import sys
+from datetime import date as Date
+from matplotlib import pyplot as plt
+from scripts import *
 
-from scripts.utils import cacular_factores_de_contagio, calcular_casos_futuros_posibles, calculate_the_most_probable_cases, calculate_worst_case_scenario, read_data, training
+cases_predictor = ModelPredictor()
+def main(args:list):
+    if args[0] == 'update':
+        update_data()
+    else:
+        country = args[0]
+        daily_cases, dates = read_data(country)
+        contag_factor = calculate_contagions_factor(daily_cases)
+        
+        
+        inputs = np.arange(1,len(contag_factor) + 1).reshape(-1,1)
+        cases_predictor.training(inputs, contag_factor, lote=10)
+        
+        median_predictions, mean_predictions = cases_predictor.predict(inputs)
+        
+        fut_cases, fut_dates, fut_contag_factor = predict_future_cases(
+            
+            model=cases_predictor.copy(),
+            contagions_factor=contag_factor, 
+            last_date=dates[-1], 
+            last_case=daily_cases[-1]
+        )
+        
+        (max_future_cases, max_contagions_factor, 
+        min_future_cases, min_contagions_factor), _ = calculate_posibility_range(
+            
+            model=cases_predictor.copy(),
+            contagions_factor=contag_factor, 
+            last_date=dates[-1], 
+            last_case=daily_cases[-1]
+        )
+        
+        print_estimations(max_future_cases, 
+                        min_future_cases, 
+                        fut_cases, country, fut_dates)
+        
+        # Ploting
+        plt.figure(figsize=(15,10))
+        plt.xlabel('Days')
+        plt.ylabel('Contagion factor')
+        plt.subplot(2,1,1)
+        plt.plot(dates[1:], contag_factor, label="Contagions_factor")
+        plt.plot(fut_dates, fut_contag_factor, label="Expected future contagion factor")
+        plt.plot(dates[1:], mean_predictions, label="Mean Predictions")
+        plt.plot(dates[1:], median_predictions, label="Median Predictions")
+        plt.xticks(rotation=60, ha='right')
+        plt.grid(True)
+        plt.legend()
+        plt.subplot(2,1,2)
+        plt.plot(dates, daily_cases, label="Daily cases")
+        plt.plot(fut_dates, fut_cases, label="Expected future daily cases")
+        plt.plot(fut_dates, min_future_cases, label="Min. Future daily cases")
+        plt.plot(fut_dates, max_future_cases, label="Max. Future daily cases")
+        #plt.fill_between(fut_dates, 
+        #                 max_future_cases, 
+        #                 min_future_cases)
+        plt.xticks(rotation=60, ha='right')
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+        
+def print_estimations(max_future_cases, min_future_cases, future_cases,
+                      country, dates):
+    print("En", country)
+    print("Format date: (mm-dd-yyyy)")
+    print("Numero de infectados:")
+    for max_case, min_case, fut_case, date in zip(max_future_cases, 
+                                            min_future_cases,
+                                            future_cases,
+                                            dates):
+        print("Fecha:", date)
+        print("\nNumero de Infectados Probable entre:",
+              int(np.around(min_case)), '-', int(np.around(max_case)),
+              "\nEl mas probable:", int(fut_case))
+        print("------------------------------------------------------")
 
-days, dates, case_history = read_data()
-case_history = np.array(case_history)
-quarantines = np.array(case_history)[:,1]
-
-contagions_factor = cacular_factores_de_contagio(case_history)
-
-labels = contagions_factor
-model = LinearRegression()
-
-inputs = np.concatenate([[days], [quarantines]], axis=0)
-inputs = np.transpose(inputs)
-
-model, model_median, model_mean = training(model, inputs[1:], labels)
-
-probable_future_cases = calculate_the_most_probable_cases(model, model_median,
-                                                          model_mean, 
-                                                          case_history[:,0][-1],
-                                                          inputs[-1])
-
-
-worst_contagion_factors, future_dates = calculate_worst_case_scenario(model_median, inputs[1:], labels, dates[-1])
-worst_future_cases = calcular_casos_futuros_posibles(worst_contagion_factors, 
-                                                     case_history[-1][0])
-
-
-    
-print("En Bolivia:")
-for wfc, pfc, date in zip(worst_future_cases, 
-                          probable_future_cases, 
-                          future_dates):
-    print(' Fecha:', date,
-          ' |Casos probables para este dia:', 
-          np.round(pfc).astype('int'),
-          ' |Casos probables para este dia (en el peor escenario):', 
-          np.round(wfc).astype('int'))
-
-
-_, model_median, _ = training(model, inputs[1:], labels)
-
-# adding 10 days
-start_day = inputs[-1][0] + 1
-new_inputs = np.arange(start_day, start_day + 10)
-new_inputs = np.concatenate([[new_inputs], np.ones((1, len(new_inputs)))])
-new_inputs = np.transpose(new_inputs)
-
-inputs = np.concatenate([inputs, new_inputs])
-
-
-outputs = model.predict(inputs)
-outputs = outputs * np.int32(outputs > 0) + 1e-5
-outputs1 = model_median.predict(inputs)
-outputs1 = outputs1 * np.int32(outputs1 > 0) + 1e-5
-outputs2 = model_mean.predict(inputs)
-outputs2 = outputs2 * np.int32(outputs2 > 0) + 1e-5
-
-for _ in range(10):
-    new_date = dates[-1] + timedelta(days=1)
-    dates.append(new_date)
-
-plt.figure(figsize=(15,20))
-plt.xlabel('Days')
-plt.ylabel('Contagion factor')
-plt.subplot(2,1,1)
-plt.plot(dates[1:22], labels, '#F00', label="factor de contagios Registrados")
-plt.plot(dates, outputs, '#FA0', label="Linear regresion")
-plt.plot(dates, outputs1, '#00A', label="Median linear regresion")
-plt.plot(dates, outputs2, '#A0A', label="Mean linear regresion")
-plt.plot(future_dates,
-          worst_contagion_factors, 
-          color='#A00', label="El peor escenario con mayor probabilidad en los proximos 10 Dias")
-plt.ylim([-0.2, 2.5])
-plt.grid(True)
-plt.legend()
-plt.subplot(2,1,2)
-plt.plot(dates[:22], case_history[:,0], label="Historial Casos registrados")
-
-plt.plot(future_dates, worst_future_cases, 
-         label="Casos posibles en los siguientes 10 dias (peor escenario con mayor probabilidad)")
-
-plt.plot(future_dates, probable_future_cases, 
-         label="Casos posibles en los siguientes 10 dias")
-plt.grid(True)
-plt.legend()
-plt.show()
-
+if __name__ == "__main__":
+    main(sys.argv[1:])
