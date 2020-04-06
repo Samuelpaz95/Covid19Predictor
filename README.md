@@ -63,7 +63,6 @@ Usamos los parametros *W* y *b* para obtener tres modelos con estas ecuaciones.
 - Mediana: <img src="https://latex.codecogs.com/gif.latex?y_{median}=\widetilde{W}X&plus;\widetilde{b}" title="y_{median}=\widetilde{W}X+\widetilde{b}" />
 - Media: <img src="https://latex.codecogs.com/gif.latex?y_{media}=\overline{W}X&plus;\overline{b}" title="y_{media}=\overline{W}X+\overline{b}" />
 
-
 ![figura_4](./.github/Figure_3.png)
 
 ### 1.4 Predicción.
